@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Facultad de Ingeniería</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" />
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+    <header class="bg-light p-3">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <img src=https://fi.unju.edu.ar/images/fi-logo.png alt="Logotipo" width="200">
+                </div>
+                <div>
+                    <h1>Facultad de Ingeniería</h1>
+                    <p>Excelencia en Educación</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/acerca">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/carreras">Carreras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/noticias">Noticias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <aside class="col-md-4 float-md-end">
+            <h2>Menú</h2>
+            <ul>
+                <li><a href="/biblioteca">Biblioteca</a></li>
+                <li><a href="/calendario">Calendario Académico</a></li>
+            </ul>
+        </aside>
+        <section>
+            <h2>Bienvenidos a la Facultad de Ingeniería</h2>
+            <p>Nuestra facultad ofrece una educación de calidad...</p>
+            <h3>Noticias Recientes</h3>
+            <p>Últimas novedades...</p>
+        </section>
+    </div>
+    <footer class="bg-light text-center text-lg-start">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Contacto</h5>
+                    <p>
+                        Dirección: Av. Bolivia 1239, Y4600 San Salvador de Jujuy, Jujuy<br>
+                        Teléfono: +54 (0388) 4244196 / 191 / 107<br>
+                        Email: iconsultas@unju.edu.ar
+                    </p>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Redes Sociales</h5>
+                    <a href="#" class="me-4 text-reset">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="me-4 text-reset">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="me-4 text-reset">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center p-3">
+                © 2024 Facultad de Ingeniería. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
