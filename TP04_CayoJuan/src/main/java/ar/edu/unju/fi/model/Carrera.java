@@ -30,7 +30,20 @@ public class Carrera {
 	public boolean isEstado() {
 		return estado;
 	}
+	public Boolean getEstado() {
+		return estado;
+		}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+	public Carrera(String codigo, String nombre, int cant_anios, Boolean estado) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.cantidadAnios = cant_anios;
+		this.estado = estado;
+	}
+	public Carrera() {
+		// TODO Auto-generated constructor stub
 	}
 }

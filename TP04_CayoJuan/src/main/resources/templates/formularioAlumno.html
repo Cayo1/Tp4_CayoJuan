@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<meta name="viewport" content="	width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/css/styles.css">
+
+<title>FormularioAlumno</title>
+</head>
+<header class="bg-light p-3"> <!-- Me da error al poner el header desde layout, pero iria esto <header>
+  		<div data-th-replace="~{layouts/header :: header}"></div>
+  	</header> -->
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <img src="https://fi.unju.edu.ar/images/fi-logo.png" width="200">
+                </div>
+                <div>
+                    <h1>Facultad de Ingeniería</h1>
+                    <p>Excelencia en Educación</p>
+                </div>
+            </div>
+        </div>
+        
+    </header> 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" data-th-fragment="navbar">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#Inicio">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Acerca de</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Carreras">Carreras</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Noticias">Noticias</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Formularios
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/formularioCarrera">Carrera</a>
+                                <a class="dropdown-item" href="/formularioDocente">Docente</a>
+                               
+								<a class="dropdown-item" href="/formularioMateria">Materia</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+<body> 
+<div class="containerForm">
+	<h1>FORMULARIO ALUMNO</h1>
+	<form data-th-object = "${nuevoAlumno}" data-th-action="${band}?@{/modificarAlumno}:@{/guardarAlumno}" method="post">
+	
+		<div>
+			<label for="dni" class="form-label">DNI</label> 
+			<input type="text" class="form-control" id="dni" data-th-field="*{dni}" data-th-readonly="${band}" required>				
+		</div>
+		<div>
+			<label for="nombre" class="form-label">Nombre</label>
+			<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}" required>
+		</div>
+		<div>
+			<label for="apellido" class="form-label">Apellido</label>
+			<input type="text" class="form-control" id="apellido" data-th-field="*{apellido}" required>
+		</div>
+		<div class="md">
+			<label for="email" class="form-label">Email</label>
+			<input type="email" class="form-control" id="email" data-th-field="*{email}" required>
+		</div>
+		<div>
+			<label for="telefono" class="form-label">Telefono</label>
+			<input type="text" class="form-control" id="telefono" data-th-field="*{telefono}" required>
+		</div>
+		<div>
+			<label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+			<input type="date" class="form-control" id="fechaNacimiento" data-th-field="*{fechaNacimiento}" required>
+		</div>
+		<div>
+			<label for="domicilio" class="form-label">Domicilio</label>
+			<input type="text" class="form-control" id="domicilio" data-th-field="*{domicilio}" required>
+		</div>
+		<div>
+			<label for="lu" class="form-label">LU</label>
+			<input type="text" class="form-control" id="lu" data-th-field="*{LU}" required>
+		</div>
+		
+	<br>
+		<button type="submit" class="btn btn-primary" >Guardar</button>
+	</form>
+</div>
+<div data-th-replace="~{layouts/footer::footer}"></div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
