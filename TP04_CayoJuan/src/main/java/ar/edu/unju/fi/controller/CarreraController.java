@@ -7,61 +7,52 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.collections.ListadoCarreras;
+import ar.edu.unju.fi.collections.ListadoCarrera;
 import ar.edu.unju.fi.model.Carrera;
 
 @Controller
 public class CarreraController {
 	@Autowired
-	Carrera nuevaCarrera = new Carrera ();
+	Carrera carrera;
+
 	@GetMapping("/formularioCarrera")
-	public ModelAndView getFormCarrera() {	
-		ModelAndView modelView = new ModelAndView("formularioCarrera");		
-		modelView.addObject("nuevaCarrera", nuevaCarrera);
-		modelView.addObject("band", false);
-		return modelView;
+	public ModelAndView getFormCarrera() {
+	    return new ModelAndView("formCarrera", "nuevaCarrera", new Carrera());
 	}
-	
 	
 	@PostMapping("/guardarCarrera")
+	public String setFormCarrera(@ModelAttribute("nuevaCarrera") Carrera c) {
+	    ListadoCarrera.agregarCarrera(c);
+	    return "redirect:/listaDeCarreras";
+	}
 	
-	public ModelAndView guardarCarrera(@ModelAttribute("nuevaCarrera")  Carrera carreraAguardar) {		
-		ListadoCarreras.agregarCarrera(carreraAguardar);		
-		ModelAndView modelView = new ModelAndView("listadoDeCarreras");		
-		modelView.addObject("ListadoCarreras", ListadoCarreras.listarCarreras());		
+	@GetMapping("/listaDeCarreras")
+	public ModelAndView mostrarLista() {
+		ModelAndView modelView = new ModelAndView("listaDeCarreras");
+		modelView.addObject("listadoCarreras", ListadoCarrera.listarCarreras());
+	
 		return modelView;
 	}
 	
-	
-	
-	@GetMapping("/darDeBajaCarrera/{codigo}")
-	public ModelAndView darDeBajaCarrera(@PathVariable(name="codigo") String codigo){
-		ListadoCarreras.darDeBajaCarrera(codigo);
-		ModelAndView modelView = new ModelAndView("listadoDeCarreras");
-		modelView.addObject("ListadoCarreras",ListadoCarreras.listarCarreras());
-		
-		return modelView;	
-		}
-	
+	@GetMapping("/eliminarCarrera/{codigo}")
+	public String eliminarCarrera(@PathVariable(name = "codigo") String cod) {
+	    ListadoCarrera.eliminarCarrera(cod);
+	    return "redirect:/listaDeCarreras";
+	}
 	
 	@GetMapping("/modificarCarrera/{codigo}")
-	public ModelAndView formModificarCarrera(@PathVariable("codigo") String codigo) {		
-		Carrera carrera = ListadoCarreras.buscarCarreraPorCodigo(codigo);
-		ModelAndView modelView = new ModelAndView("modificarCarrera");		
-		modelView.addObject("nuevaCarrera", carrera);	
-		modelView.addObject("band", true);	
-		return modelView;
-	}
-
-	@PostMapping("/modificarCarrera")
-	public ModelAndView modificarCarrera(@ModelAttribute("nuevaCarrera") Carrera carrera) {
+	public ModelAndView formModificarCarrera(@PathVariable("codigo") String cod) {
+		carrera = ListadoCarrera.buscarCarrera(cod);
 		
-		ListadoCarreras.modificarCarrera(carrera);
-		
-		ModelAndView modelView = new ModelAndView("listadoDeCarreras");
-		
-		modelView.addObject("ListadoCarreras", ListadoCarreras.listarCarreras());
+		ModelAndView modelView = new ModelAndView("modificarCarrera");
+		modelView.addObject("carreraModificada", carrera);
+	
 		return modelView;
 	}
 	
+	@PostMapping("/modificarCarrera")
+	public String modificarCarrera(@ModelAttribute("carreraModificada") Carrera c) {
+	    ListadoCarrera.modificarCarrera(c);
+	    return "redirect:/listaDeCarreras";
+	}
 }
