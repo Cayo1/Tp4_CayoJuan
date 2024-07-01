@@ -1,30 +1,33 @@
 package ar.edu.unju.fi.model;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Materia {
 	private String codigo;
-    private String nombre;
-    private String curso;
-    private int cantHoras;
-    private String modalidad;
-    private String docente;
-    private String carrera;
-
-
-	public Materia(String codigo, String nombre, String curso, int cantHoras, String modalidad, String docente,
-			String carrera) {
+	private String nombre;
+	private String curso;
+	private String modalidad;
+	
+	@Autowired
+	private Docente docete;
+	
+	@Autowired
+	private Carrera carrera;
+	
+	public Materia() {
+	}
+	
+	public Materia(String codigo, String nombre, String curso, Carrera carrera, String modalidad, Docente docente) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.curso = curso;
-		this.cantHoras = cantHoras;
-		this.modalidad = modalidad;
-		this.docente = docente;
 		this.carrera = carrera;
+		this.modalidad = modalidad;
+		this.docete = docente;
 	}
-
+	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -49,12 +52,12 @@ public class Materia {
 		this.curso = curso;
 	}
 
-	public int getCantHoras() {
-		return cantHoras;
+	public Carrera getCarrera() {
+		return carrera;
 	}
 
-	public void setCantHoras(int cantHoras) {
-		this.cantHoras = cantHoras;
+	public void setCarrera(Carrera carrera) {
+		this.carrera = carrera;
 	}
 
 	public String getModalidad() {
@@ -65,23 +68,11 @@ public class Materia {
 		this.modalidad = modalidad;
 	}
 
-	public String getDocente() {
-		return docente;
+	public Docente getDocente() {
+		return docete;
 	}
 
-	public void setDocente(String docente) {
-		this.docente = docente;
+	public void setDocente(Docente docente) {
+		this.docete = docente;
 	}
-
-	public String getCarrera() {
-		return carrera;
-	}
-
-	public void setCarrera(String carrera) {
-		this.carrera = carrera;
-	}
-
-	public Materia() {
-
-	}  
 }

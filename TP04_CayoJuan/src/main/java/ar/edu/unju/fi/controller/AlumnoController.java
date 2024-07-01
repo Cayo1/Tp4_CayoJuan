@@ -13,70 +13,55 @@ import ar.edu.unju.fi.model.Alumno;
 @Controller
 public class AlumnoController {
 	@Autowired
-	Alumno nuevoAlumno = new Alumno();
+	Alumno alumno;
 	
 	@GetMapping("/formularioAlumno")
 	public ModelAndView getFormAlumno() {
-		
-		ModelAndView modelView = new ModelAndView("formularioAlumno");
-		
-		modelView.addObject("nuevoAlumno", nuevoAlumno);
-		modelView.addObject("band", false);
+		ModelAndView modelView = new ModelAndView("formAlumno");
+		modelView.addObject("nuevoAlumno", alumno);
+	
 		return modelView;
 	}
-	
 	
 	@PostMapping("/guardarAlumno")
-	
-	public ModelAndView guardarAlumno(@ModelAttribute("nuevoAlumno") Alumno alumnoAGuardar) {
+	public ModelAndView setFormAlumno(@ModelAttribute("nuevoAlumno") Alumno a) {
 		
-		ListadoAlumno.agregarAlumno(alumnoAGuardar);
+		ListadoAlumno.agregarAlumno(a);
 		
-		ModelAndView modelView = new ModelAndView("listadoDeAlumnos");
-		
-		modelView.addObject("ListadoAlumno", ListadoAlumno.listarAlumnos());
-		
-		return modelView;
+		return mostrarLista();
 	}
 	
-	
-	
-	@GetMapping("/borrarAlumno/{dni}")
-	
-	public ModelAndView BorrarAlumno(@PathVariable(name="dni") String dni) {
+	@GetMapping("/eliminarAlumno/{dni}")
+	public ModelAndView eliminarAlumno(@PathVariable (name="dni") String dni) {
 		
 		ListadoAlumno.eliminarAlumno(dni);
 		
-		ModelAndView modelView = new ModelAndView("listadoDeAlumnos");
-		
-		modelView.addObject("ListadoAlumno", ListadoAlumno.listarAlumnos());	
-		
-		return modelView;		
-		}
+		return mostrarLista();
+	}
 	
 	@GetMapping("/modificarAlumno/{dni}")
 	public ModelAndView formModificarAlumnoa(@PathVariable("dni") String dni) {
+		alumno = ListadoAlumno.buscarAlumno(dni);
 		
-		Alumno alumno = ListadoAlumno.buscarAlumnoPorDNI(dni);
-
-		ModelAndView modelView = new ModelAndView("formularioAlumno");
-		
-		modelView.addObject("nuevoAlumno", alumno);
-		
-		modelView.addObject("band", true);
-
+		ModelAndView modelView = new ModelAndView("modificarAlumno");
+		modelView.addObject("alumnoModificado", alumno);
+	
 		return modelView;
 	}
-
+	
 	@PostMapping("/modificarAlumno")
-	public ModelAndView modificarAlumno(@ModelAttribute("modificarAlumno") Alumno alumno) {
-
-		ListadoAlumno.modificarAlumno(alumno);
+	public ModelAndView modificarAlumno(@ModelAttribute("alumnoModificado") Alumno a) {
 		
-		ModelAndView modelView = new ModelAndView("listadoDeAlumnos");
-
-		modelView.addObject("ListadoAlumno", ListadoAlumno.listarAlumnos());
-		return modelView;
+		ListadoAlumno.modificarAlumno(a);
+		
+		return mostrarLista();
 	}
-
+	
+	@GetMapping("/listaDeAlumnos")
+	public ModelAndView mostrarLista() {
+	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
+	    modelView.addObject("listadoAlumnos", ListadoAlumno.listarAlumnosActivos());
+	    
+	    return modelView;
+	}
 }

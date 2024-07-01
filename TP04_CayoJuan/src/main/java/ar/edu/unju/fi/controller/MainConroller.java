@@ -12,5 +12,5 @@ public class MainConroller { //para utilizar el controller tiene que hacer lic d
 
 		public String getIndex() {
 			return "index";
-		}
+	}
 }

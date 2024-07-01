@@ -4,11 +4,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-	<title>Modificar Materia</title>
+	<title>Formulario Materia</title>
 </head>
 <body>
 
-	    <header class="bg-light p-3"> <!-- Me da error al poner el header desde layout, pero iria esto <header>
+			 <header class="bg-light p-3"> <!-- Me da error al poner el header desde layout, pero iria esto <header>
   		<div data-th-replace="~{layouts/header :: header}"></div>
   	</header> -->
         <div class="container">
@@ -42,7 +42,7 @@
                                 <a class="dropdown-item" href="/formularioCarrera">Carrera</a>
                                 <a class="dropdown-item" href="/formularioDocente">Docente</a>
                                 <a class="dropdown-item" href="/formularioAlumno">Alumno</a>
-								<a class="dropdown-item" href="/formularioMateria">Materia</a>
+								
                             </div>
                         </li>
                     </ul>
@@ -51,10 +51,9 @@
         </nav>
     </header> 
 
-
-	<div class="container form">
-		<h1>Modificar Materia</h1>
-		<form data-th-object="${materiaModificada}" data-th-action="@{/modificarMateria}" method="post">
+	<div class="container form" >
+		<h1>Formulario Materia</h1>
+		<form data-th-object="${nuevaMateria}" data-th-action="@{/guardarMateria}" method="post" >
 		
 			<div class="mb-3">
 				<label for="codigo" class="form-label">Codigo</label> 
@@ -93,7 +92,8 @@
 				</select>
 			</div>
 			
-			<button type="submit" class="btn btn-success">Modificar</button>
+			<button type="submit" class="btn btn-success">Guardar</button>
+			<a data-th-href="@{'/listaDeMaterias'}" class="btn btn-info">Ver Lista</a>
 		</form>
 	</div>
 	
